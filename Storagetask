@@ -1,0 +1,16 @@
+export STORAGENAME=medicalrecords$RANDOM
+
+#1. create a storage account for patient images.
+
+az storage account create \
+    --name $STORAGENAME \
+    --access-tier hot \
+    --kind StorageV2 \
+    --resource-group learn-3ec274a5-71e9-4bc3-a95b-30618beb1656
+
+#2. Create a container to store the images in
+
+az storage container create \
+    --name patient-images \
+    --account-name $STORAGENAME \
+    --public-access off
